@@ -6,6 +6,495 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            font: inherit;
+            color: inherit;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+        }
+
+        input {
+            border: none;
+        }
+
+        input[type="radio"] {
+            cursor: pointer;
+        }
+
+        button {
+            user-select: none;
+            cursor: pointer;
+            background: 0;
+            border: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        :root {
+            --image-player: url('../assets/images/characters/v1.png');
+            --image-enemy: url('../assets/images/characters/gabriel.png');
+
+            --color-bg-theme-green: #0d1610;
+            --color-bg-theme-green-bright: #1e3424;
+            --color-font-main-theme-green: #252525;
+            --color-font-no-ui-theme-green: #bebebe;
+            --color-metal-gradient-1: #767676;
+            --color-metal-gradient-2: #a0a0a0;
+            --color-field-border: var(--color-font-main-theme-green);
+            --color-field-border-red: #ff6060;
+            --color-fighter-ui-line: #a7a7a7;
+            --color-border-red: #460000;
+            --color-healthbar-red: #ad0000;
+            --color-attack-button: #ff6060;
+            --color-attack-button-transparent: rgba(255, 96, 96, 0.1);
+            --color-highlight-red: #960000;
+            --color-highlight-blue: #0000be;
+            --color-highlight-yellow: #cccc00;
+            --color-highlight-green: #009e00;
+            --color-highlight-white: #c8c8c8;
+
+            --gradient-metal: linear-gradient(to bottom, var(--color-metal-gradient-1), var(--color-metal-gradient-1) 70%, var(--color-metal-gradient-2));
+
+            --fontsize-default: 1rem;
+            --fontsize-larger: 2rem;
+            --fontsize-large: 1.75rem;
+            --fontsize-normal: 1.5rem;
+            --fontsize-small: 1.25rem;
+            --fontsize-smaller: 1rem;
+
+            --fontfam-main: "Montserrat";
+            --fontfam-title: "Kanit";
+
+            --font-title: 600 var(--fontsize-default) var(--fontfam-title);
+            --font-main: 600 var(--fontsize-default) var(--fontfam-main);
+
+            --gap-ui-container: 15px;
+            --gap-ui-element: 10px;
+            --gap-battle-ui: 50px;
+            --gap-fighter: 30px;
+        }
+
+        .wrapper {
+            background-color: var(--color-bg-theme-green);
+            color: var(--color-font-main-theme-green);
+        }
+
+        .registry {
+            .registry__container {
+                width: 960px;
+                height: 540px;
+                box-shadow: 0 0 20px 1px var(--color-border-red), inset 0 0 5px 6px rgba(0, 0, 0, 0.5);
+                border-radius: 50% / 15%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .registry__title {
+                text-align: center;
+                font: var(--font-title);
+                font-size: 56px;
+                text-shadow: 1px 1px 2px var(--color-border-red);
+            }
+
+            .registry__form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                flex-grow: 1;
+                font: var(--font-main);
+                font-size: var(--fontsize-larger);
+            }
+
+            .registry__name-label {
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .registry__name-input {
+                width: 100%;
+                background: 0;
+                padding: var(--gap-ui-element);
+            }
+
+            .registry__submit {
+                width: 60%;
+                padding: var(--gap-ui-element);
+                background: #d5d5d5;
+            }
+        }
+
+        .main {
+            .main__container {
+                height: 70%;
+                aspect-ratio: 3 / 2;
+                border-radius: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+                font: var(--font-main);
+                font-size: var(--fontsize-large);
+            }
+
+            .main__button {
+                width: 25%;
+                padding: var(--gap-ui-element);
+            }
+        }
+
+        .battle {
+            .battle__container {
+                width: 70%;
+                height: 95%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .battle__battle-container {
+                width: 100%;
+                height: calc(55% - var(--gap-battle-ui) / 2);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .fighter {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            height: 100%;
+            aspect-ratio: 2 / 3;
+            border-radius: 8px;
+            padding: var(--gap-fighter) !important;
+
+            .fighter__image {
+                width: 100%;
+                height: 85%;
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .fighter__image_1 {
+                background-image: var(--image-player);
+            }
+
+            .fighter__image_2 {
+                background-image: var(--image-enemy);
+            }
+
+            .fighter__ui-line {
+                height: 7px;
+                border: 2px solid #7d7d7d;
+                border-radius: 2px;
+                background: var(--color-fighter-ui-line);
+            }
+
+            .fighter__stats {
+                flex-grow: 1;
+                margin-top: 4px;
+            }
+
+            .fighter__healthbar {
+                overflow: hidden;
+                box-shadow: inset 0 0 5px 4px rgba(0, 0, 0, 0.4);
+                background: var(--color-healthbar-red);
+                border: 2px solid var(--color-field-border);
+                border-radius: 10px;
+                height: 20px;
+                display: flex;
+            }
+
+            .fighter__healthbar-segment {
+                width: 20%;
+                border-left: 2px solid var(--color-field-border);
+
+                &:first-of-type {
+                    border-left: 0;
+                }
+            }
+        }
+
+        .battle-menu {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            color: var(--color-font-no-ui-theme-green);
+            font: var(--font-main);
+            font-size: var(--fontsize-small);
+
+            .battle-menu__title {
+                text-align: center;
+            }
+
+            .battle-menu__choice {
+                display: flex;
+            }
+
+            .battle-menu__zones-container {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .battle-menu__zones-title {
+                text-align: center;
+            }
+
+            .battle-menu__zones {
+                display: flex;
+                flex-direction: column;
+                font-weight: 300;
+                color: #979797;
+            }
+
+            .battle-menu__zones_attack {
+                text-align: left;
+                border-right: 1px solid var(--color-field-border);
+
+                .battle-menu__zone-label {
+                    border-radius: 5px 0 0 5px;
+                }
+            }
+
+            .battle-menu__zones_defense {
+                text-align: right;
+                border-left: 1px solid var(--color-field-border);
+
+                .battle-menu__zone-label {
+                    border-radius: 0 5px 5px 0;
+                }
+            }
+
+            .battle-menu__zone-label {
+                user-select: none;
+                cursor: pointer;
+                padding: 3px 5px;
+
+                &:hover {
+                    background: var(--color-bg-theme-green-bright);
+                }
+            }
+
+            .battle-menu__zone-input {
+                pointer-events: none;
+            }
+
+            .battle-menu__attack-button {
+                width: 80%;
+                padding: var(--gap-ui-element);
+                margin: 0 auto;
+                background: var(--color-attack-button-transparent);
+                box-shadow: inset 0 0 3px 1px var(--color-attack-button);
+                border: 2px solid var(--color-attack-button);
+                border-radius: 3px;
+                font: var(--font-title);
+                font-size: var(--fontsize-normal);
+                font-weight: 400;
+                letter-spacing: 2px;
+            }
+        }
+
+        .log {
+            width: 100%;
+            height: calc(45% - var(--gap-battle-ui) / 2);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            font: var(--font-main);
+
+            .log__container {
+                width: 50%;
+                padding: 0 var(--gap-ui-container);
+                border-left: 2px solid;
+                border-right: 2px solid;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                overflow-y: scroll;
+                scroll-behavior: smooth;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            .log__highlight_red {
+                color: var(--color-highlight-red);
+            }
+
+            .log__highlight_blue {
+                color: var(--color-highlight-blue);
+            }
+
+            .log__highlight_yellow {
+                color: var(--color-highlight-yellow);
+            }
+
+            .log__highlight_green {
+                color: var(--color-highlight-green);
+            }
+
+            .log__highlight_white {
+                color: var(--color-highlight-white);
+            }
+        }
+
+        .character {
+            .character__container {
+                position: relative;
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                font: var(--font-main);
+            }
+
+            .character__current-character-container {
+                display: flex;
+                align-items: center;
+                gap: 50px;
+            }
+
+            .character__current-character-box {
+                width: 200px;
+                height: 300px;
+                padding: 10px;
+            }
+
+            .character__current-character-image {
+                width: 200px;
+                height: 300px;
+            }
+
+            .character__stats-item_name {
+                font-weight: 700;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            .character__stats-item_wins {
+                color: var(--color-highlight-green);
+            }
+
+            .character__stats-item_loses {
+                color: var(--color-highlight-red);
+            }
+
+            .character__select {
+                display: flex;
+                gap: 20px;
+            }
+
+            .character__select-title {
+                text-align: center;
+                font: var(--font-title);
+                font-size: var(--fontsize-normal);
+            }
+
+            .character__character-box {
+                cursor: pointer;
+                width: 200px;
+                height: 300px;
+                border: 2px solid;
+                padding: 10px;
+                transition: all .2s;
+
+                &:hover {
+                    padding: 2px;
+                }
+
+                &:active {
+                    padding: 10px;
+                }
+            }
+
+            .character__character-image {
+                width: 100%;
+                height: 100%;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            .character__exit-button {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .settings {
+            .settings__container {
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                font: var(--font-main);
+            }
+
+            .settings__name-label {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .settings__name-input {
+                padding: 3px;
+            }
+
+            .settings__save-button {
+                margin-left: auto;
+                padding: 3px;
+            }
+        }
+
+
+
+        .ui-container {
+            box-shadow: inset 0 0 5px 6px rgba(0, 0, 0, 0.5);
+            background: var(--gradient-metal);
+            padding: var(--gap-ui-container);
+        }
+
+        .ui-element {
+            border-radius: 4px;
+            border: 2px solid;
+            box-shadow: inset 0 0 50px 1px rgba(0, 0, 0, 0.4);
+        }
+
+        .page-centring {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+  <script type="module" crossorigin>(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))c(n);new MutationObserver(n=>{for(const a of n)if(a.type==="childList")for(const o of a.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&c(o)}).observe(document,{childList:!0,subtree:!0});function s(n){const a={};return n.integrity&&(a.integrity=n.integrity),n.referrerPolicy&&(a.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?a.credentials="include":n.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function c(n){if(n.ep)return;n.ep=!0;const a=s(n);fetch(n.href,a)}})();Array.prototype.random=function(){return this[Math.floor(Math.random()*this.length)]};const P=["registry","main","battle","character","settings"];function r(t){return document.querySelector(t)}function b(t){return document.querySelectorAll(t)}function w(t,e="unset"){const s=r(t),c=s.style.display;s.style.display=c==="none"?e:"none"}function x(){P.forEach(t=>{r(`.${t}`).style.display="none"})}function m(t,e="flex"){x(),w(t,e)}function _(t,e){localStorage.getItem(t)||localStorage.setItem(t,e)}function z(){const t=r(".registry__name-input"),e=r(".registry__submit");function s(c){c.preventDefault();const n=t.value;localStorage.setItem("playerName",n),m(".main")}e.addEventListener("click",c=>s(c))}const p={v1:{maxHealth:250,health:250,attack:30,zonesQuantity:1,attackQuantity:3,name:"V1"},gabriel:{maxHealth:300,health:300,attack:30,zonesQuantity:3,attackQuantity:1,name:"Gabriel"},sisyphus:{maxHealth:300,health:300,attack:30,zonesQuantity:2,attackQuantity:2,name:"Sisyphus Prime"},minos:{maxHealth:650,health:650,attack:30,zonesQuantity:2,attackQuantity:1,name:"Minos Prime"}},I=["head","neck","body","belly","legs"];function f(t){const e=r(".log__container"),s=document.createElement("div");s.className="log__message",s.innerHTML=t,e.appendChild(s),s.scrollIntoView()}function Q(t,e,s,c,n=!1,a=!1,o=t.name,h=e.name){let l;n?l=`${o} <span class="log__highlight_red">attacks</span> ${h} with a <span class="log__highlight_yellow">critical hit</span> to the <span class="log__highlight_white">${c}</span> and deals <span class="log__highlight_red">${s} damage</span>`:a?l=`${h} <span class="log__highlight_blue">defends</span> ${o}'s attack to the <span class="log__highlight_white">${c}</span>`:l=`${o} <span class="log__highlight_red">attacks</span> ${h} to the <span class="log__highlight_white">${c}</span> and deals <span class="log__highlight_red">${s} damage</span>`,f(l)}const i={},g={};let d=!0;function v(t,e,s,c,n=t.name,a=e.name){for(const o of s){const h=Math.random()<.25,l=c.includes(o);h?k(e,t.attack*1.5):l||k(e,t.attack),Q(t,e,t.attack,o,h,l,n,a)}}function A(t){const e=[...t].reduce((a,o)=>(a.push(o.value),a),[]),s=[],c=[...I];for(let a=0;a<g.zonesQuantity;a++){const o=c.random();c.splice(c.indexOf(o),1),s.push(o)}const n=localStorage.getItem("playerName");v(i,g,e,s,n)}function C(t){const e=[],s=[...I];for(let a=0;a<g.attackQuantity;a++){const o=s.random();s.splice(s.indexOf(o),1),e.push(o)}const c=[...t].reduce((a,o)=>(a.push(o.value),a),[]),n=localStorage.getItem("playerName");v(g,i,e,c,g.name,n)}function k(t,e){const s=t.element.querySelector(".fighter__healthbar");t.health-=e;const c=t.health/t.maxHealth*100;s.style.background=`linear-gradient(to right, var(--color-healthbar-red) ${c}%, transparent ${c}%)`}function O(){const t=b(".battle-menu__zones_attack .battle-menu__zone-input"),e=b(".battle-menu__zones_defense .battle-menu__zone-input"),s=r(".battle-menu__attack-button"),c=[],n=[];function a(){return d&&c.length===i.attackQuantity&&n.length===i.zonesQuantity?(document.body.style.setProperty("--color-attack-button","#ff6060"),document.body.style.setProperty("--color-attack-button-transparent","rgba(255, 96, 96, 0.1)"),!0):(document.body.style.setProperty("--color-attack-button","#767676"),document.body.style.setProperty("--color-attack-button-transparent","rgba(118,118,118,0.1)"),!1)}function o(l,u,L=1){const y=l.target;y.checked?(u.length>L-1&&(u[0].checked=!1,u.splice(0,1)),u.push(y)):u.splice(u.indexOf(y),1),a()}function h(){if(a()){if(A(c),d=!1,a(),g.health<=0){d=!1,a(),f("You won!");const l=parseInt(localStorage.getItem("wins"));localStorage.setItem("wins",`${l+1}`);return}setTimeout(()=>{if(C(n),i.health<=0){d=!1,a(),f("You lost!");const l=parseInt(localStorage.getItem("loses"));localStorage.setItem("loses",`${l+1}`);return}setTimeout(()=>{d=!0,a()},500)},1500)}}t.forEach(l=>l.addEventListener("change",u=>{o(u,c,i.attackQuantity)})),e.forEach(l=>l.addEventListener("change",u=>{o(u,n,i.zonesQuantity)})),s.addEventListener("click",h),a()}function $(){const t=r(".settings__name-input"),e=r(".settings__save-button");t.placeholder=localStorage.getItem("playerName"),e.addEventListener("click",()=>{localStorage.setItem("playerName",t.value),m(".main")})}function N(t){localStorage.setItem("playerCharacter",t),r(".character__current-character-image").style.backgroundImage=`url(src/assets/images/characters/${t}.png)`}function E(){const t=r(".character__stats-item_wins"),e=r(".character__stats-item_loses"),s=r(".character__stats-item_name");t.innerText=`wins: ${localStorage.getItem("wins")}`,e.innerText=`loses: ${localStorage.getItem("loses")}`,s.innerText=localStorage.getItem("playerName")}function B(){const t=r(".character__select"),e=Object.keys(p),s=r(".character__exit-button");e.forEach(c=>{const n=document.createElement("div"),a=document.createElement("div");n.classList.add("character__character-box"),n.classList.add("character__select-item"),n.classList.add("ui-element"),n.setAttribute("character",c),a.className="character__character-image",a.style.backgroundImage=`url(./src/assets/images/characters/${c}.png)`,n.addEventListener("click",o=>{N(o.currentTarget.getAttribute("character"))}),n.appendChild(a),t.appendChild(n)}),r(".character__stats-item_name").innerText=localStorage.getItem("playerName"),r(".character__current-character-image").style.backgroundImage=`url(../assets/images/characters/${localStorage.getItem("playerCharacter")}.png)`,s.addEventListener("click",()=>{m(".main")}),E()}function S(t,e,s){t.character=e,t.element=r(s);for(const c in p[e])t[c]=p[e][c]}function T(){m(".battle");const t=localStorage.getItem("playerCharacter"),e=Object.keys(p).random();S(i,t,".fighter_player"),S(g,e,".fighter_enemy"),document.body.style.setProperty("--image-player",`url(src/assets/images/characters/${i.character}.png)`),document.body.style.setProperty("--image-enemy",`url(src/assets/images/characters/${g.character}.png)`),r(".battle-menu__title").innerText=`Choose ${i.attackQuantity} attack zone('s) and ${i.zonesQuantity} defense zone('s)`}function M(){const t=r(".main__start-button"),e=r(".main__character-button"),s=r(".main__settings-button");t.addEventListener("click",T),e.addEventListener("click",()=>{E(),m(".character")}),s.addEventListener("click",()=>{$(),m(".settings")})}z();M();O();B();$();_("playerCharacter","v1");_("wins","0");_("loses","0");m(localStorage.getItem("playerName")?".main":".registry");</script>
 </head>
 <body>
     <div class="wrapper page-centring">
@@ -146,6 +635,5 @@
             </div>
         </div>
     </div>
-    <script src="src/main.js" type="module"></script>
 </body>
 </html>
