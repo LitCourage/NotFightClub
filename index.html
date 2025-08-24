@@ -4,8 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="wrapper page-centring">
+        <div class="registry page-centring">
+            <div class="registry__container ui-container">
+                <h2 class="registry__title">Not Fight Club</h2>
+                <form class="registry__form">
+                    <label class="registry__name-label">
+                        Choose your name
+                        <input class="registry__name-input ui-element" type="text" required>
+                    </label>
+                    <button class="registry__submit ui-element" type="submit">Enter</button>
+                </form>
+            </div>
+        </div>
+        <div class="main page-centring" style="display: none;">
+            <div class="main__container ui-container">
+                <button class="main__start-button ui-element">Fight!</button>
+            </div>
+        </div>
+        <div class="battle page-centring" style="display: none;">
+            <div class="battle__container">
+                <div class="battle__battle-container">
+                    <div class="fighter fighter_player ui-container">
+                        <div class="fighter__image fighter__image_1"></div>
+                        <div class="fighter__ui-line">
+
+                        </div>
+                        <div class="fighter__stats">
+                            <div class="fighter__healthbar">
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="battle-menu">
+                        <p class="battle-menu__title">Choose 1 attack zone and 2 defense zones</p>
+                        <div class="battle-menu__choice">
+                            <div class="battle-menu__zones-container">
+                                <p class="battle-menu__zones-title">Attack</p>
+                                <div class="battle-menu__zones battle-menu__zones_attack">
+                                    <label class="battle-menu__zone-label">
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-attack" value="head">
+                                        Head
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-attack" value="neck">
+                                        Neck
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-attack" value="body">
+                                        Body
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-attack" value="belly">
+                                        Belly
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-attack" value="legs">
+                                        Legs
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="battle-menu__zones-container">
+                                <p class="battle-menu__zones-title">Defense</p>
+                                <div class="battle-menu__zones battle-menu__zones_defense">
+                                    <label class="battle-menu__zone-label">
+                                        Head
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-defense" value="head">
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        Neck
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-defense" value="neck">
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        Body
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-defense" value="body">
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        Belly
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-defense" value="belly">
+                                    </label>
+                                    <label class="battle-menu__zone-label">
+                                        Legs
+                                        <input class="battle-menu__zone-input" type="checkbox" name="zones-defense" value="legs">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="battle-menu__attack-button">Attack!</button>
+                    </div>
+                    <div class="fighter fighter_enemy ui-container">
+                        <div class="fighter__image fighter__image_2"></div>
+                        <div class="fighter__ui-line"></div>
+                        <div class="fighter__stats">
+                            <div class="fighter__healthbar">
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                                <div class="fighter__healthbar-segment"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log ui-container">
+                    <div class="log__container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="src/main.js" type="module"></script>
 </body>
 </html>
