@@ -1,6 +1,6 @@
 import {querySelector} from "./util.js";
 
-function logMessage(text) {
+export function logMessage(text) {
     const logContainer = querySelector('.log__container');
     const message = document.createElement('div');
 
@@ -8,6 +8,7 @@ function logMessage(text) {
     message.innerHTML = text;
 
     logContainer.appendChild(message);
+    message.scrollIntoView();
 }
 
 export function logAttack(attacker, defender, damage, zone, isCritical=false, isDefended=false, attackerName=attacker.name, defenderName=defender.name) {

@@ -1,5 +1,5 @@
 import {querySelector, querySelectorAll} from "./util.js";
-import {logAttack} from "./logging.js";
+import {logAttack, logMessage} from "./logging.js";
 import {zones} from "./characters.js";
 
 export const player = {}
@@ -12,7 +12,7 @@ function attack(attacker, defender, attackZones, defendZones, attackerName=attac
         const isDefended =defendZones.includes(attackZone)
 
         if (isCritical) {
-            changeHealth(defender, attacker.attack * 2);
+            changeHealth(defender, attacker.attack * 1.5);
         } else if (!isDefended) {
             changeHealth(defender, attacker.attack);
         }
@@ -106,16 +106,40 @@ export function handleBattleControls() {
         checkIfCanAttack()
     }
 
-    zonesAttack.forEach(zone => zone.addEventListener('change', event => {chooseZone(event, zonesAttackChecked, player.attackQuantity)}))
-    zonesDefense.forEach(zone => zone.addEventListener('change', event => {chooseZone(event, zonesDefenseChecked, player.zonesQuantity)}))
-    attackButton.addEventListener('click', () => {
+    function handleAttack() {
         if (checkIfCanAttack()) {
             attackNPC(zonesAttackChecked)
+            canAttack = false;
+            checkIfCanAttack()
+            if (enemy.health <= 0) {
+                canAttack = false
+                checkIfCanAttack()
+                logMessage('You won!')
+                const wins = parseInt(localStorage.getItem('wins'))
+                localStorage.setItem('wins', `${wins + 1}`)
+                return
+            }
             setTimeout(() => {
                 attackPlayer(zonesDefenseChecked)
+                if (player.health <= 0) {
+                    canAttack = false
+                    checkIfCanAttack()
+                    logMessage('You lost!')
+                    const loses = parseInt(localStorage.getItem('loses'))
+                    localStorage.setItem('loses', `${loses + 1}`)
+                    return
+                }
+                setTimeout(() => {
+                    canAttack = true
+                    checkIfCanAttack()
+                }, 500)
             }, 1500)
         }
-    })
+    }
+
+    zonesAttack.forEach(zone => zone.addEventListener('change', event => {chooseZone(event, zonesAttackChecked, player.attackQuantity)}))
+    zonesDefense.forEach(zone => zone.addEventListener('change', event => {chooseZone(event, zonesDefenseChecked, player.zonesQuantity)}))
+    attackButton.addEventListener('click', handleAttack)
 
     checkIfCanAttack()
 }

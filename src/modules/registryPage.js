@@ -1,4 +1,4 @@
-import {querySelector, toggleElementVisibility} from "./util.js";
+import {disableAllPagesVisibility, querySelector, showPage, toggleElementVisibilityViaSelector} from "./util.js";
 
 export function handleRegistrationForm() {
     const input = querySelector('.registry__name-input');
@@ -10,8 +10,7 @@ export function handleRegistrationForm() {
 
         localStorage.setItem('playerName', name);
 
-        toggleElementVisibility('.main', 'flex');
-        toggleElementVisibility('.registry');
+        showPage('.main');
     }
 
     button.addEventListener('click', event => enterMainPage(event));

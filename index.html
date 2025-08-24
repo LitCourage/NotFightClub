@@ -21,19 +21,19 @@
                 </form>
             </div>
         </div>
-        <div class="main page-centring" style="display: none;">
+        <div class="main page-centring" >
             <div class="main__container ui-container">
-                <button class="main__start-button ui-element">Fight!</button>
+                <button class="main__button main__start-button ui-element">Fight!</button>
+                <button class="main__button main__character-button ui-element">Characters</button>
+                <button class="main__button main__settings-button ui-element">Settings</button>
             </div>
         </div>
-        <div class="battle page-centring" style="display: none;">
+        <div class="battle page-centring">
             <div class="battle__container">
                 <div class="battle__battle-container">
                     <div class="fighter fighter_player ui-container">
                         <div class="fighter__image fighter__image_1"></div>
-                        <div class="fighter__ui-line">
-
-                        </div>
+                        <div class="fighter__ui-line"></div>
                         <div class="fighter__stats">
                             <div class="fighter__healthbar">
                                 <div class="fighter__healthbar-segment"></div>
@@ -117,6 +117,32 @@
                 <div class="log ui-container">
                     <div class="log__container"></div>
                 </div>
+            </div>
+        </div>
+        <div class="character page-centring">
+            <div class="character__container ui-container">
+                <div class="character__current-character-container">
+                    <div class="character__character-box ui-element">
+                        <div class="character__character-image character__current-character-image"></div>
+                    </div>
+                    <ul class="character__stats-list">
+                        <li class="character__stats-item character__stats-item_name"></li>
+                        <li class="character__stats-item character__stats-item_wins">Wins: 100</li>
+                        <li class="character__stats-item character__stats-item_loses">Loses: 200</li>
+                    </ul>
+                </div>
+                <div class="character__select-title">Choose your character</div>
+                <div class="character__select"></div>
+                <button class="character__exit-button ui-element">✖</button>
+            </div>
+        </div>
+        <div class="settings page-centring">
+            <div class="settings__container ui-container">
+                <label class="settings__name-label">
+                    Name
+                    <input class="settings__name-input ui-element" type="text">
+                </label>
+                <button class="settings__save-button ui-element">Save</button>
             </div>
         </div>
     </div>
